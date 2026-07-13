@@ -1,0 +1,72 @@
+create database py2;
+use py2;
+show databases;
+create database if not exists py2;
+drop database py2;
+drop database if exists py2;
+show tables;
+
+create table Student(
+id int PRIMARY KEY,
+FullName varchar(60) NOT NULL,
+course varchar(60) default "B.Tech",
+email varchar(60),
+phone varchar(12),
+marks float check (marks>=0)
+);
+drop table Student;
+desc Student;
+
+insert into Student(id,FullName,mail_ID,phone,marks) 
+values(101,"Vanshika Maru","vanshika@gmail.com","1234567890",90.9);
+
+insert into Student value(102,"Sakshi goyal","B.Tech","acb2gamil.com","1263567382",91);
+
+insert into Student values
+(103,"Palak Bordiya","B.Tech","cb@gamil.com","9863567382",89),
+(104,"Apurva","B.Tech","appu@gamil.com","9856567382",87),
+(105,"rishika","B.Tech","rish@gamil.com","8763567382",80);
+select * from Student;
+
+alter table Student
+add gender char(1);
+
+alter table Student
+change email mail_ID varchar(60);
+
+alter table Student
+modify gender char(7);
+
+alter table Student
+drop gender;
+
+truncate Student;
+
+alter table Student
+add unique key(phone);
+
+-- select queries
+select * from Student;
+select FullName from Student;
+select id,FullName from Student;
+
+select * from Student 
+where id=101 or FullName="Apurva";
+
+select * from Student
+where FullName Like "%a";
+select * from Student
+where FullName Like "a%";
+select * from Student
+where FullName Like "a_%";
+select * from Student
+where FullName Like "%i%";
+
+select FullName from Student order by FullName;
+select FullName from Student order by FullName desc;
+
+select count(*) from Student group by course;
+select count(*) from Student group by course
+having course="B.Tech";
+
+                                                                
