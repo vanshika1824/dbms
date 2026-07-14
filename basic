@@ -69,4 +69,61 @@ select count(*) from Student group by course;
 select count(*) from Student group by course
 having course="B.Tech";
 
-                                                                
+-- join queries
+
+create table orders(
+o_id int PRIMARY KEY,
+o_item varchar(60),
+c_id varchar(10)
+);
+
+create table customer(
+c_id VARCHAR(10) PRIMARY KEY,
+c_name varchar(60),
+c_phone VARCHAR(12),
+address vARCHAR(200)
+);
+
+insert into customer values
+("c101","vanshika","8756538290","ujjain"),
+("c102","sakshi","9876538430","indore"),
+("c103","apurva","9877638430","dewas"),
+("c104","palak","9876538065","udaipur"),
+("c105","rishika","8876538430","Jodhpur");
+
+insert into orders values
+(1,"MAggie","c101"),
+(2,"Momos","c102"),
+(3,"PAsta","c103"),
+(4,"Paneer Tikka","c102"),
+(5,"Coke","c102"),
+(7,"Burger","c106");
+
+select * from orders;
+select * from customer;
+
+select o_id,o_item,c_name,c_phone,address
+from orders
+INNER JOIN customer 
+ON orders.c_id = customer.c_id;
+
+select o_id,o_item,c_name,c_phone,address
+from orders
+LEFT JOIN customer 
+ON orders.c_id = customer.c_id;
+
+select o_id,o_item,c_name,c_phone,address
+from orders
+RIGHT JOIN customer 
+ON orders.c_id = customer.c_id;
+
+-- FULL OUTER JION
+select o_id,o_item,c_name,c_phone,address
+from orders
+LEFT JOIN customer 
+ON orders.c_id = customer.c_id
+UNION 
+select o_id,o_item,c_name,c_phone,address
+from orders
+RIGHT JOIN customer 
+ON orders.c_id = customer.c_id;                                                                
